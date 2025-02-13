@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
+# Contact Book App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This a [Vite.js](https://vitejs.dev/) project bootstrapped with [create-vite](https://vite.dev/guide/) with template `react-ts`.
 
-Currently, two official plugins are available:
+The project is a simple contact book app that allows users to add, edit, and delete contacts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React](https://reactjs.org/) (v19.0.0): A JavaScript library for building user interfaces.
+- [TypeScript](https://www.typescriptlang.org/) (v5.7.2): A typed superset of JavaScript that compiles to plain JavaScript.
+- [Vite](https://vitejs.dev/) (v6.1.0): A build tool that aims to provide a faster and leaner development experience for modern web projects.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+- Node.js
+- npm
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+## Project setup
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. Clone the repository:
+    ```
+    git clone https://github.com/DNL-Z/contact-book-app.git
+    ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+2. Navigate into the project directory:
+    ```
+    cd contact-book-app
+    ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+3. Install the dependencies:
+    ```
+    npm install
+    ```
+
+## Available Scripts
+
+- `npm run dev`: Runs the app in development mode with hot-reloading enabled.
+- `npm run build`: Compiles TypeScript files and builds the app for production to the `dist` folder.
+- `npm run lint`: Lints and checks the code for any syntax errors.
+- `npm run preview`: Starts a local server for previewing the production build.
