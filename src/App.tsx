@@ -1,8 +1,8 @@
-import './App.css';
+import '@/styles/App.css';
 
 import { useState } from 'react';
 
-import ContactList from '../src/components/ContactList/ContactList';
+import ContactList from '@/components/ContactList/ContactList';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);

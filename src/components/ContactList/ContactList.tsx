@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Contact } from '../../types/contact.ts';
-import Spinner from '../Spinner/Spinner.tsx';
+import Spinner from '@/components/Spinner/Spinner';
+import { Contact } from '@/types/contact.ts';
 
 interface Props {
   contacts: Contact[];
