@@ -1,4 +1,4 @@
-export type Contact = {
+export type TContact = {
   id: number;
   firstName: string;
   lastName: string;
