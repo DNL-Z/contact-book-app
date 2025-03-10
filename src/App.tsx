@@ -69,17 +69,19 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <h1 className="text-3xl font-bold">
-        Contact Book App
-      </h1>
-      <ContactList contacts={contacts} onPanel={openSidePanel} onDelete={handleDeleteContact} />
+    <div>
+      <div className={`${panelState.isOpen ? 'blur-sm pointer-events-none z-10' : ''}`}>
+        <h1 className="text-3xl font-bold">
+          Contact Book App
+        </h1>
+        <ContactList contacts={contacts} onPanel={openSidePanel} onDelete={handleDeleteContact} />
+      </div>
       {panelState.isOpen && (
         <SidePanel isNew={panelState.isNew} contact={panelState.contact} contacts={contacts}
                    handleClickCreate={handleCreateContact}
                    handleClickUpdate={handleUpdateContact} closePanel={closeSidePanel} />
       )}
-    </>
+    </div>
   );
 };
 
