@@ -1,49 +1,86 @@
 import '@/styles/App.css';
 
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ContactList from '@/components/ContactList/ContactList';
+import SidePanel from '@/components/SidePanel/SidePanel.tsx';
+import { contactService } from '@/services/apiService.ts';
+import { TContact } from '@/types/contact.ts';
 
-function App() {
-  const [isLoading, setIsLoading] = useState(true);
+const App: React.FC = () => {
+  const [contacts, setContacts] = useState<TContact[]>([]);
+  const [panelState, setPanelState] = useState<{ isOpen: boolean; isNew: boolean; contact?: TContact }>({
+    isOpen: false,
+    isNew: false,
+    contact: undefined,
+  });
 
-  const contacts = [
-    {
-      id: 1,
-      firstName: 'John',
-      lastName: 'Doe',
-      dateOfBirth: '1990-01-01',
-      phone: '1234567890',
-      email: 'john.doe@test.com',
-    },
-    {
-      id: 2,
-      firstName: 'Jane',
-      lastName: 'Doe',
-      dateOfBirth: '1995-01-01',
-      phone: '0987654321',
-      email: 'jane.doe@test.com',
-    },
-    {
-      id: 3,
-      firstName: 'James',
-      lastName: 'Smith',
-      dateOfBirth: '1992-01-01',
-      phone: '1234567890',
-      email: 'james.smith@test.com',
-    },
-  ];
+  const openSidePanel = (isNew: boolean, contact?: TContact) => {
+    setPanelState({ isOpen: true, isNew, contact });
+  };
 
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 500);
+  const closeSidePanel = () => {
+    setPanelState({ isOpen: false, isNew: false, contact: undefined });
+  };
+
+  const fetchContacts = async () => {
+    try {
+      const data = await contactService.fetchContacts();
+      setContacts(data);
+      console.log('Data fetched successfully :', data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    }
+  };
+
+  const handleCreateContact = async (data: TContact) => {
+    try {
+      const newContact = await contactService.createContact(data);
+      setContacts([...contacts, newContact]);
+      console.log('Contact created successfully!', newContact);
+    } catch (error) {
+      console.error('Error while creating contact:', error);
+    }
+  };
+
+  const handleUpdateContact = async (id: number, data: TContact) => {
+    if (id === null) return; // Security check avoid calling API with null id
+    try {
+      const updatedContact = await contactService.updateContact(id, data);
+      setContacts(contacts.map((contact) => (contact.id === id ? updatedContact : contact)));
+      console.log('Contact updated successfully!', updatedContact);
+    } catch (error) {
+      console.error('Error while updating contact:', error);
+    }
+  };
+
+  const handleDeleteContact = async (id: number) => {
+    try {
+      await contactService.deleteContact(id);
+      setContacts(contacts.filter((contact) => contact.id !== id));
+      console.log('Contact deleted successfully!', id);
+    } catch (error) {
+      console.error('Error while deleting contact :', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchContacts();
+  }, []);
 
   return (
     <>
-      <h1 className="text-3xl font-bold">Contact Book App</h1>
-      <ContactList contacts={contacts} isLoading={isLoading} />
+      <h1 className="text-3xl font-bold">
+        Contact Book App
+      </h1>
+      <ContactList contacts={contacts} onPanel={openSidePanel} onDelete={handleDeleteContact} />
+      {panelState.isOpen && (
+        <SidePanel isNew={panelState.isNew} contact={panelState.contact} contacts={contacts}
+                   handleClickCreate={handleCreateContact}
+                   handleClickUpdate={handleUpdateContact} closePanel={closeSidePanel} />
+      )}
     </>
   );
-}
+};
 
 export default App;
