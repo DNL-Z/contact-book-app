@@ -55,7 +55,8 @@ const SidePanel: React.FC<Props> = ({ isNew, contact, contacts, handleClickUpdat
 
   return (
     <>
-      <div className="fixed top-0 right-0 h-screen w-1/3 bg-gray-100 shadow-lg p-4 z-99">
+      <div
+        className="flex flex-col justify-center fixed top-0 m-auto right-0 h-screen w-1/3 bg-gray-100 shadow-lg p-4 z-99">
         <div className="flex flex-col gap-4 items-center">
           <input type="text" name="firstName" value={state.firstName} onChange={handleChange} placeholder="First Name"
                  className="font-bold text-2xl text-gray-900 text-center overflow-hidden mb-4 border-2 rounded-2xl bg-purple-50 p-1" />
