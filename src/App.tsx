@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import ContactList from '@/components/ContactList/ContactList';
 import SidePanel from '@/components/SidePanel/SidePanel.tsx';
+import Spinner from '@/components/Spinner/Spinner.tsx';
 import { contactService } from '@/services/apiService.ts';
 import { TContact } from '@/types/contact.ts';
 
@@ -14,6 +15,7 @@ const App: React.FC = () => {
     isNew: false,
     contact: undefined,
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   const openSidePanel = (isNew: boolean, contact?: TContact) => {
     setPanelState({ isOpen: true, isNew, contact });
@@ -43,18 +45,18 @@ const App: React.FC = () => {
     }
   };
 
-  const handleUpdateContact = async (id: number, data: TContact) => {
+  const handleUpdateContact = async (id: string, data: TContact) => {
     if (id === null) return; // Security check avoid calling API with null id
     try {
       const updatedContact = await contactService.updateContact(id, data);
-      setContacts(contacts.map((contact) => (contact.id === id ? updatedContact : contact)));
+      setContacts(contacts.map((contact) => (contact?.id === id ? updatedContact : contact)));
       console.log('Contact updated successfully!', updatedContact);
     } catch (error) {
       console.error('Error while updating contact:', error);
     }
   };
 
-  const handleDeleteContact = async (id: number) => {
+  const handleDeleteContact = async (id: string) => {
     try {
       await contactService.deleteContact(id);
       setContacts(contacts.filter((contact) => contact.id !== id));
@@ -65,9 +67,10 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchContacts();
+    fetchContacts().then(() => setIsLoading(false));
   }, []);
 
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <div className={`${panelState.isOpen ? 'blur-sm pointer-events-none z-10' : ''}`}>
