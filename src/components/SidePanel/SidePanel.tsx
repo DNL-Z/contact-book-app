@@ -8,7 +8,7 @@ interface Props {
   isNew: boolean;
   contact?: TContact;
   contacts?: TContact[];
-  handleClickUpdate?: (id: number, data: TContact) => void;
+  handleClickUpdate?: (id: string, data: TContact) => void;
   handleClickCreate?: (data: TContact) => void;
   closePanel: () => void;
 }
@@ -16,11 +16,10 @@ interface Props {
 const SidePanel: React.FC<Props> = ({ isNew, contact, contacts, handleClickUpdate, handleClickCreate, closePanel }) => {
 
   const createNewId = () => {
-    return contacts ? (Math.max(...contacts.map((contact) => contact.id)) + 1).toString() : '0';
+    return contacts ? (Math.max(...contacts.map((contact) => parseInt(contact.id))) + 1).toString() : '0';
   };
 
-  // TODO: Fix ID type with useState<TContact>
-  const [state, setState] = useState({
+  const [state, setState] = useState<TContact>({
     id: contact?.id || createNewId(),
     firstName: contact?.firstName || '',
     lastName: contact?.lastName || '',

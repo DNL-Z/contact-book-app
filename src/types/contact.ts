@@ -1,5 +1,5 @@
 export type TContact = {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   dateOfBirth: string;

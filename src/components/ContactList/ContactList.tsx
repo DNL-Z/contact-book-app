@@ -6,10 +6,12 @@ import { TContact } from '@/types/contact.ts';
 interface Props {
   contacts: TContact[];
   onPanel: (isNew: boolean, contact?: TContact) => void;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 const ContactList: React.FC<Props> = ({ contacts, onPanel, onDelete }) => {
+  contacts.sort((a, b) => a.firstName.localeCompare(b.firstName));
+
   return (
     <>
       <div

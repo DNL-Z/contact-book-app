@@ -5,7 +5,7 @@ import { TContact } from '@/types/contact.ts';
 interface Props {
   contact: TContact;
   onPanel: (isNew: boolean, contact?: TContact) => void;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 const ContactItem: React.FC<Props> = ({ contact, onPanel, onDelete }) => {
