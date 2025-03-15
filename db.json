@@ -18,19 +18,19 @@
     },
     {
       "id": "3",
-      "firstName": "James",
+      "firstName": "William",
       "lastName": "Smith",
       "dateOfBirth": "1996-07-18",
       "phone": "0456123459",
-      "email": "james.smith@test.com"
+      "email": "william.smith@test.com"
     },
     {
       "id": "4",
-      "firstName": "Jane",
-      "lastName": "Doe",
+      "firstName": "Sane",
+      "lastName": "Michael",
       "dateOfBirth": "1992-03-30",
       "phone": "0213456789",
-      "email": "jane.doe@test.com"
+      "email": "sane.michael@test.com"
     }
   ]
 }
