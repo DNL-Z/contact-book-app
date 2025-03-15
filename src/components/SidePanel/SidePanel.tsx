@@ -57,18 +57,16 @@ const SidePanel: React.FC<Props> = ({ isNew, contact, contacts, handleClickUpdat
       <div
         className="flex flex-col justify-center fixed top-0 m-auto right-0 h-screen w-1/3 bg-gray-100 shadow-lg p-4 z-99">
         <div className="flex flex-col gap-4 items-center">
-          <input type="text" name="firstName" value={state.firstName} onChange={handleChange} placeholder="First Name"
-                 className="font-bold text-2xl text-gray-900 text-center overflow-hidden mb-4 border-2 rounded-2xl bg-purple-50 p-1" />
-          <input type="text" name="lastName" value={state.lastName} onChange={handleChange} placeholder="Last Name"
-                 className="font-bold text-2xl text-gray-900 text-center overflow-hidden mb-4 border-2 rounded-2xl bg-purple-50 p-1" />
-          <input type="date" name="dateOfBirth" value={state.dateOfBirth} onChange={handleChange} placeholder="DOB"
-                 className="font-bold text-2xl text-gray-900 text-center overflow-hidden mb-4 border-2 rounded-2xl bg-purple-50 p-1" />
-          <input type="email" name="email" value={state.email} onChange={handleChange} placeholder="Email"
-                 className="font-bold text-2xl text-gray-900 text-center overflow-hidden mb-4 border-2 rounded-2xl bg-purple-50 p-1" />
-          <input type="text" name="phone" value={state.phone} onChange={handleChange} placeholder="Phone"
-                 className="font-bold text-2xl text-gray-900 text-center overflow-hidden mb-4 border-2 rounded-2xl bg-purple-50 p-1" />
-          <button onClick={submit}>{isNew ? 'Create' : 'Update'}</button>
-          <button onClick={closePanel}>Close</button>
+          <input type="text" name="firstName" value={state.firstName} onChange={handleChange}
+                 placeholder="First Name" />
+          <input type="text" name="lastName" value={state.lastName} onChange={handleChange} placeholder="Last Name" />
+          <input type="date" name="dateOfBirth" value={state.dateOfBirth} onChange={handleChange}
+                 placeholder="Date Of Birthday" />
+          <input type="email" name="email" value={state.email} onChange={handleChange} placeholder="Email" />
+          <input type="text" name="phone" value={state.phone} onChange={handleChange} placeholder="Phone" />
+          <button className="w-1/4 h-12 mx-auto bg-gray-900 hover:bg-gray-950 mt-7"
+                  onClick={submit}>{isNew ? 'Create' : 'Update'}</button>
+          <button className="w-1/4 h-12 mx-auto bg-gray-600 hover:bg-gray-700" onClick={closePanel}>Close</button>
         </div>
       </div>
     </>

@@ -16,7 +16,10 @@ const ContactList: React.FC<Props> = ({ contacts, onPanel, onDelete }) => {
     <>
       <div
         className="grid grid-cols-1 gap-3 rounded-2xl bg-blue-200 m-7 p-7 overflow-hidden overflow-y-auto h-146 w-146">
-        <button className="w-2/3 h-12 mx-auto" onClick={() => onPanel(true, undefined)}>New Contact</button>
+        <button
+          className="w-2/3 h-12 mx-auto bg-gray-900 hover:bg-gray-950"
+          onClick={() => onPanel(true, undefined)}>New Contact
+        </button>
         {contacts.length > 0 ? contacts.map((contact: TContact) => (
           <ContactItem key={contact.id} contact={contact} onPanel={() => onPanel(false, contact)}
                        onDelete={onDelete} />

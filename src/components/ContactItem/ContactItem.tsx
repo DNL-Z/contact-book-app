@@ -11,8 +11,8 @@ interface Props {
 const ContactItem: React.FC<Props> = ({ contact, onPanel, onDelete }) => {
   return (
     <>
-      <div key={contact.id} className="grid grid-cols-2 rounded-2xl max-h-36 bg-purple-50 p-3">
-        <div className="flex flex-col justify-center">
+      <div key={contact.id} className="grid grid-cols-3 rounded-2xl max-h-36 bg-purple-50 p-3">
+        <div className="flex flex-col justify-center col-span-2">
           <div className="font-bold text-2xl text-gray-900 mb-4">{contact.firstName} {contact.lastName}</div>
           <div className="text-gray-700">
             <div>{contact.dateOfBirth}</div>
@@ -21,8 +21,9 @@ const ContactItem: React.FC<Props> = ({ contact, onPanel, onDelete }) => {
           </div>
         </div>
         <div className="flex flex-col gap-3 justify-center">
-          <button onClick={() => onPanel(false, contact)}>Edit Contact</button>
-          <button onClick={() => onDelete(contact.id)}>Delete Contact</button>
+          <button className="bg-green-900 hover:bg-green-950" onClick={() => onPanel(false, contact)}>Edit Contact
+          </button>
+          <button className="bg-red-900 hover:bg-red-950" onClick={() => onDelete(contact.id)}>Delete Contact</button>
         </div>
       </div>
     </>
