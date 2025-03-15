@@ -45,11 +45,11 @@ The project is a simple contact book app that allows users to add, edit, and del
 
 ## Run server and app
 
-1. Start JSON-Server (in 1st window):
+1. Start JSON-Server (1st window):
     ```
     json-server --watch db.json --port 3004
     ```
-2. Start the app (in 2nd window):
+2. Start the app (2nd window):
     ```
     npm run dev
     ```
