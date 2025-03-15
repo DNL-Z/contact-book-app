@@ -72,7 +72,13 @@ const App: React.FC = () => {
 
   if (isLoading) return <Spinner />;
   return (
-    <div>
+    <div className="relative">
+      {panelState.isOpen && (
+        <div
+          className="fixed inset-0"
+          onClick={closeSidePanel}
+        ></div>
+      )}
       <div className={`${panelState.isOpen ? 'blur-sm pointer-events-none z-10' : ''}`}>
         <h1 className="text-3xl font-bold">
           Contact Book App
