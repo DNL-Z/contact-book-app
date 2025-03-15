@@ -28,6 +28,6 @@ export const contactService = {
   fetchContacts: () => apiRequest('', 'GET'),
   // fetchContactById: (id: number) => apiRequest(`/${id}`, 'GET'),
   createContact: (contact: TContact) => apiRequest('', 'POST', contact),
-  updateContact: (id: number, contact: TContact) => apiRequest(`/${id}`, 'PUT', contact),
-  deleteContact: (id: number) => apiRequest(`/${id}`, 'DELETE'),
+  updateContact: (id: string, contact: TContact) => apiRequest(`/${id}`, 'PUT', contact),
+  deleteContact: (id: string) => apiRequest(`/${id}`, 'DELETE'),
 };
