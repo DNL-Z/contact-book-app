@@ -1,26 +1,17 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
+import UseSidePanel from '@/hooks/useSidePanel.tsx';
+import useContactsStore from '@/stores/useContactsStore.ts';
 import { TContact } from '@/types/contact';
 
 export type ChangeInputEventType = ChangeEvent<HTMLInputElement>;
 
-interface Props {
-  isNew: boolean;
-  contact?: TContact;
-  contacts?: TContact[];
-  handleClickUpdate?: (id: string, data: TContact) => void;
-  handleClickCreate?: (data: TContact) => void;
-  closePanel: () => void;
-}
-
-const SidePanel: React.FC<Props> = ({ isNew, contact, contacts, handleClickUpdate, handleClickCreate, closePanel }) => {
-
-  const createNewId = () => {
-    return contacts ? (Math.max(...contacts.map((contact) => parseInt(contact.id))) + 1).toString() : '0';
-  };
+const SidePanel: React.FC = () => {
+  const { isOpen, isNew, contact, closePanel } = UseSidePanel();
+  const { contacts, addContact, updateContact } = useContactsStore();
 
   const [state, setState] = useState<TContact>({
-    id: contact?.id || createNewId(),
+    id: contact?.id || '',
     firstName: contact?.firstName || '',
     lastName: contact?.lastName || '',
     dateOfBirth: contact?.dateOfBirth || '',
@@ -32,30 +23,43 @@ const SidePanel: React.FC<Props> = ({ isNew, contact, contacts, handleClickUpdat
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  const submit = () => {
+  const submit = async () => {
     if (!state.firstName || !state.lastName || !state.dateOfBirth || !state.email || !state.phone) {
       alert('Please fill in all fields');
       return;
     }
 
     if (isNew) {
-      handleClickCreate?.(state);
+      await addContact(state);
     } else {
-      handleClickUpdate?.(state.id, state);
+      await updateContact(state.id, state);
     }
     closePanel();
   };
 
+  const randomNewId = () => {
+    return contacts && (Math.max(...contacts.map((contact) => parseInt(contact.id))) + 1).toString();
+  };
+
   useEffect(() => {
-    if (contact) {
+    if (isNew) {
+      setState({
+        id: randomNewId(),
+        firstName: '',
+        lastName: '',
+        dateOfBirth: '',
+        email: '',
+        phone: '',
+      });
+    } else if (contact) {
       setState(contact);
     }
-  }, [contact]);
+  }, [isNew, contact]);
 
   return (
-    <>
+    isOpen && (
       <div
-        className="flex flex-col justify-center fixed top-0 m-auto right-0 h-screen w-1/3 bg-gray-100 shadow-lg p-4 z-99">
+        className="flex flex-col justify-center fixed top-0 m-auto right-0 h-screen w-1/3 bg-gray-100 shadow-lg p-4">
         <div className="flex flex-col gap-4 items-center">
           <input type="text" name="firstName" value={state.firstName} onChange={handleChange}
                  placeholder="First Name" />
@@ -69,7 +73,7 @@ const SidePanel: React.FC<Props> = ({ isNew, contact, contacts, handleClickUpdat
           <button className="w-1/4 h-12 mx-auto bg-gray-600 hover:bg-gray-700" onClick={closePanel}>Close</button>
         </div>
       </div>
-    </>
+    )
   );
 };
 

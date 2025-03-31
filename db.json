@@ -1,7 +1,7 @@
 {
   "contacts": [
     {
-      "id": "1",
+      "id": "0",
       "firstName": "John",
       "lastName": "Doe",
       "dateOfBirth": "1990-12-09",
@@ -9,7 +9,7 @@
       "phone": "2213456789"
     },
     {
-      "id": "2",
+      "id": "1",
       "firstName": "Chris",
       "lastName": "Richardson",
       "dateOfBirth": "1995-03-09",
@@ -17,7 +17,7 @@
       "email": "chris.richardson@test.com"
     },
     {
-      "id": "3",
+      "id": "2",
       "firstName": "William",
       "lastName": "Smith",
       "dateOfBirth": "1996-07-18",
@@ -25,7 +25,7 @@
       "email": "william.smith@test.com"
     },
     {
-      "id": "4",
+      "id": "3",
       "firstName": "Sane",
       "lastName": "Michael",
       "dateOfBirth": "1992-03-30",
