@@ -5,14 +5,15 @@ This a [Vite.js](https://vitejs.dev/) project bootstrapped with [create-vite](ht
 
 The project is a simple contact book app that allows users to add, edit, and delete contacts.
 
-- [React](https://reactjs.org/) (v19.0.0): A JavaScript library for building user interfaces.
-- [TypeScript](https://www.typescriptlang.org/) (v5.7.2): A typed superset of JavaScript that compiles to plain
-  JavaScript.
-- [Vite](https://vitejs.dev/) (v6.1.0): A build tool that aims to provide a faster and leaner development experience for
+- [Vite](https://vitejs.dev/) (v6.3.5): A build tool that aims to provide a faster and leaner development experience for
   modern web projects.
+- [React](https://reactjs.org/) (v19.1.0): A JavaScript library for building user interfaces.
+- [TypeScript](https://www.typescriptlang.org/) (v5.8.3): A typed superset of JavaScript that compiles to plain
+  JavaScript.
+- [Zustand](https://zustand-demo.pmnd.rs/) (v5.0.4): A small, fast, and scalable bearbones state-management solution.
 - [JSON-Server](https://github.com/typicode/json-server) (v0.17.0): A full fake REST API that allows you to create a
   CRUD API with zero coding.
-- [Tailwind CSS](https://tailwindcss.com/) (v4.0.6): A utility-first CSS framework for rapidly building custom designs.
+- [Tailwind CSS](https://tailwindcss.com/) (v4.1.5): A utility-first CSS framework for rapidly building custom designs.
 
 ---
 
