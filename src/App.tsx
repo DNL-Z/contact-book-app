@@ -11,16 +11,9 @@ const App: React.FC = () => {
 
   return (
     <>
-      {isOpen && (
-        <div
-          className="fixed inset-0"
-          onClick={closePanel}
-        ></div>
-      )}
-      <div className={`${isOpen ? 'blur-sm pointer-events-none z-10' : ''}`}>
-        <h1 className="text-3xl font-bold">
-          Contact Book App
-        </h1>
+      {isOpen && <div className="fixed inset-0" onClick={closePanel}></div>}
+      <div className={`${isOpen ? 'pointer-events-none z-10 blur-sm' : ''}`}>
+        <h1 className="text-3xl font-bold">Contact Book App</h1>
         <ContactList />
       </div>
       <SidePanel />

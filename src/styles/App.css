@@ -1,35 +1,35 @@
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
 button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    cursor: pointer;
-    transition: border-color 0.25s;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 
 input {
-    border-radius: 16px;
-    border: 1px solid transparent;
-    padding: 1em 1.5em;
-    font-size: 1em;
-    font-weight: 700;
-    transition: border-color 0.25s;
-    background-color: darkgray;
-    color: white;
-    width: 40%;
-    margin: auto;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  padding: 1em 1.5em;
+  font-size: 1em;
+  font-weight: 700;
+  transition: border-color 0.25s;
+  background-color: darkgray;
+  color: white;
+  width: 40%;
+  margin: auto;
 }

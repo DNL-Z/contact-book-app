@@ -11,5 +11,5 @@ createRoot(document.getElementById('root')!).render(
     <SidePanelProvider>
       <App />
     </SidePanelProvider>
-  </StrictMode>,
+  </StrictMode>
 );

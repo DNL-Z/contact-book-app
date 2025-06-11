@@ -19,17 +19,18 @@ const ContactList: React.FC = () => {
   if (isLoading) return <Spinner />;
   return (
     <>
-      <div
-        className="grid grid-cols-1 gap-3 rounded-2xl bg-blue-200 m-7 p-7 overflow-hidden overflow-y-auto h-146 w-146">
+      <div className="m-7 grid h-146 w-146 grid-cols-1 gap-3 overflow-hidden overflow-y-auto rounded-2xl bg-blue-200 p-7">
         <button
-          className="w-2/3 h-12 mx-auto bg-gray-900 hover:bg-gray-950"
-          onClick={() => openPanel(true, undefined)}>New Contact
+          className="mx-auto h-12 w-2/3 bg-gray-900 hover:bg-gray-950"
+          onClick={() => openPanel(true, undefined)}
+        >
+          New Contact
         </button>
-        {contacts.length > 0 ? contacts.map((contact: TContact) => (
-          <ContactItem key={contact.id} contact={contact} />
-        )) : (
-          <div className="text-center mt-10 mb-5">
-            <h2 className="text-gray-900 text-2xl mt-5">Contact Book is empty</h2>
+        {contacts.length > 0 ? (
+          contacts.map((contact: TContact) => <ContactItem key={contact.id} contact={contact} />)
+        ) : (
+          <div className="mt-10 mb-5 text-center">
+            <h2 className="mt-5 text-2xl text-gray-900">Contact Book is empty</h2>
           </div>
         )}
       </div>

@@ -14,20 +14,26 @@ const ContactItem: React.FC<Props> = ({ contact }) => {
 
   return (
     <>
-      <div key={contact.id} className="grid grid-cols-3 rounded-2xl max-h-36 bg-purple-50 p-3">
-        <div className="flex flex-col justify-center col-span-2 truncate overflow-auto">
-          <div className="font-bold text-2xl text-gray-900 mb-4">{contact.firstName} {contact.lastName}</div>
+      <div key={contact.id} className="grid max-h-36 grid-cols-3 rounded-2xl bg-purple-50 p-3">
+        <div className="col-span-2 flex flex-col justify-center truncate overflow-auto">
+          <div className="mb-4 text-2xl font-bold text-gray-900">
+            {contact.firstName} {contact.lastName}
+          </div>
           <div className="text-gray-700">
             <div>{contact.dateOfBirth}</div>
             <div>{contact.phone}</div>
             <div>{contact.email}</div>
           </div>
         </div>
-        <div className="flex flex-col gap-3 justify-center">
-          <button className="bg-green-900 hover:bg-green-950" onClick={() => openPanel(false, contact)}>Edit Contact
+        <div className="flex flex-col justify-center gap-3">
+          <button
+            className="bg-green-900 hover:bg-green-950"
+            onClick={() => openPanel(false, contact)}
+          >
+            Edit Contact
           </button>
-          <button className="bg-red-900 hover:bg-red-950" onClick={() => deleteContact(contact.id)}>Delete
-            Contact
+          <button className="bg-red-900 hover:bg-red-950" onClick={() => deleteContact(contact.id)}>
+            Delete Contact
           </button>
         </div>
       </div>

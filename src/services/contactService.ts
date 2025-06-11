@@ -8,7 +8,8 @@ const contactService = {
   fetchContacts: () => apiClient(CONTACTS_ENDPOINT, 'GET'),
   // fetchContactById: (id: number) => apiClient(`/${id}`, 'GET'),
   addContact: (contact: TContact) => apiClient(CONTACTS_ENDPOINT, 'POST', contact),
-  updateContact: (id: string, contact: TContact) => apiClient(`${CONTACTS_ENDPOINT}/${id}`, 'PUT', contact),
+  updateContact: (id: string, contact: TContact) =>
+    apiClient(`${CONTACTS_ENDPOINT}/${id}`, 'PUT', contact),
   deleteContact: (id: string) => apiClient(`${CONTACTS_ENDPOINT}/${id}`, 'DELETE'),
 };
 

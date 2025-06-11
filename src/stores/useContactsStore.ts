@@ -45,7 +45,9 @@ const useContactsStore = create<ContactStore>()(
           try {
             const updatedContact = await contactService.updateContact(id, contact);
             set((state) => ({
-              contacts: state.contacts.map((contact) => (contact.id === id ? updatedContact : contact)),
+              contacts: state.contacts.map((contact) =>
+                contact.id === id ? updatedContact : contact
+              ),
             }));
             // console.log('Contact updated successfully:', updatedContact);
           } catch (error) {
@@ -67,8 +69,9 @@ const useContactsStore = create<ContactStore>()(
       }),
       {
         name: 'contacts-storage',
-      },
-    )),
+      }
+    )
+  )
 );
 
 export default useContactsStore;

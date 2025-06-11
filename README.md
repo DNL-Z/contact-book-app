@@ -25,35 +25,38 @@ The project is a simple contact book app that allows users to add, edit, and del
 ## Project setup
 
 1. Clone the repository:
-    ```
-    git clone https://github.com/DNL-Z/contact-book-app.git
-    ```
+
+   ```
+   git clone https://github.com/DNL-Z/contact-book-app.git
+   ```
 
 2. Navigate into the project directory:
-    ```
-    cd contact-book-app
-    ```
+
+   ```
+   cd contact-book-app
+   ```
 
 3. Install the dependencies:
-    ```
-    npm install
-    ```
+
+   ```
+   npm install
+   ```
 
 4. Install JSON-Server:
-    ```
-    npm i -g json-server
-    ```
+   ```
+   npm i -g json-server
+   ```
 
 ## Run server and app
 
 1. Start JSON-Server (1st window):
-    ```
-    json-server --watch db.json --port 3004
-    ```
+   ```
+   json-server --watch db.json --port 3004
+   ```
 2. Start the app (2nd window):
-    ```
-    npm run dev
-    ```
+   ```
+   npm run dev
+   ```
 
 Open [http://localhost:5173/](http://localhost:5173/) with your browser to see the result.
 
