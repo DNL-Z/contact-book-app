@@ -1,112 +1,112 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 import UseSidePanel from '@/hooks/useSidePanel.tsx';
 import useContactsStore from '@/stores/useContactsStore.ts';
 import { TContact } from '@/types/contact';
 
-export type ChangeInputEventType = ChangeEvent<HTMLInputElement>;
-
 const SidePanel: React.FC = () => {
-  const { isOpen, isNew, contact, closePanel } = UseSidePanel();
-  const { contacts, addContact, updateContact } = useContactsStore();
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { isSubmitting, isValid, isSubmitSuccessful, errors },
+  } = useForm<TContact>();
 
-  const [state, setState] = useState<TContact>({
-    id: contact?.id || '',
-    firstName: contact?.firstName || '',
-    lastName: contact?.lastName || '',
-    dateOfBirth: contact?.dateOfBirth || '',
-    email: contact?.email || '',
-    phone: contact?.phone || '',
+  const { contact, isOpen, isNew, closePanel } = UseSidePanel();
+  const { addContact, updateContact } = useContactsStore();
+
+  const onSubmit = handleSubmit((data) => {
+    try {
+      if (isNew && isValid) {
+        addContact(data);
+      } else if (!isNew && isValid && contact?.id) {
+        updateContact(contact?.id, data);
+      }
+
+      // Only for showing a success message
+      setTimeout(() => {
+        closePanel();
+      }, 5000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   });
-
-  const handleChange = (e: ChangeInputEventType) => {
-    setState({ ...state, [e.target.name]: e.target.value });
-  };
-
-  const submit = async () => {
-    if (!state.firstName || !state.lastName || !state.dateOfBirth || !state.email || !state.phone) {
-      alert('Please fill in all fields');
-      return;
-    }
-
-    if (isNew) {
-      await addContact(state);
-    } else {
-      await updateContact(state.id, state);
-    }
-    closePanel();
-  };
-
-  const randomNewId = () => {
-    return (
-      contacts && (Math.max(...contacts.map((contact) => parseInt(contact.id))) + 1).toString()
-    );
-  };
-
+  
   useEffect(() => {
-    if (isNew) {
-      setState({
-        id: randomNewId(),
-        firstName: '',
-        lastName: '',
-        dateOfBirth: '',
-        email: '',
-        phone: '',
-      });
-    } else if (contact) {
-      setState(contact);
+    if (!isNew && contact) {
+      setValue('firstName', contact.firstName);
+      setValue('lastName', contact.lastName);
+      setValue('dateOfBirth', contact.dateOfBirth);
+      setValue('email', contact.email);
+      setValue('phone', contact.phone);
     }
-  }, [isNew, contact]);
+  }, [contact, isNew, setValue]);
 
   return (
     isOpen && (
       <div className="fixed top-0 right-0 m-auto flex h-screen w-1/3 flex-col justify-center bg-gray-100 p-4 shadow-lg">
-        <div className="flex flex-col items-center gap-4">
+        <form onSubmit={onSubmit} className="flex flex-col items-center gap-4">
+          <h2 className="text-2xl font-bold text-gray-700">
+            {isNew ? 'Create Contact' : 'Update Contact'}
+          </h2>
           <input
             type="text"
-            name="firstName"
-            value={state.firstName}
-            onChange={handleChange}
+            {...register('firstName', { required: 'First Name is required' })}
             placeholder="First Name"
+            autoComplete="given-name"
           />
+          {errors.firstName && <span className="text-red-900">{errors.firstName.message}</span>}
           <input
             type="text"
-            name="lastName"
-            value={state.lastName}
-            onChange={handleChange}
+            {...register('lastName', { required: 'Last Name is required' })}
             placeholder="Last Name"
+            autoComplete="family-name"
           />
+          {errors.lastName && <span className="text-red-900">{errors.lastName.message}</span>}
           <input
             type="date"
-            name="dateOfBirth"
-            value={state.dateOfBirth}
-            onChange={handleChange}
-            placeholder="Date Of Birthday"
+            {...register('dateOfBirth', { required: 'Date of Birth is required' })}
+            placeholder="Date Of Birth"
+            autoComplete="bday"
           />
+          {errors.dateOfBirth && <span className="text-red-900">{errors.dateOfBirth.message}</span>}
           <input
+            id="email"
             type="email"
-            name="email"
-            value={state.email}
-            onChange={handleChange}
+            {...register('email', { required: 'Email is required' })}
             placeholder="Email"
+            autoComplete="email"
           />
+          {errors.email && <span className="text-red-900">{errors.email.message}</span>}
           <input
-            type="text"
-            name="phone"
-            value={state.phone}
-            onChange={handleChange}
+            id="phone-number"
+            type="tel"
+            {...register('phone', { required: 'Phone is required' })}
             placeholder="Phone"
+            autoComplete="tel"
           />
+          {errors.phone && <span className="text-red-900">{errors.phone.message}</span>}
+          {isSubmitSuccessful && (
+            <div
+              className="rounded-lg border-green-700 bg-green-200 px-4 py-3 text-green-700"
+              role="alert"
+            >
+              Contact {isNew ? 'created' : 'updated'} successfully!
+            </div>
+          )}
           <button
+            type="submit"
+            value="Submit"
             className="mx-auto mt-7 h-12 w-1/4 bg-gray-900 hover:bg-gray-950"
-            onClick={submit}
+            disabled={isSubmitting}
           >
             {isNew ? 'Create' : 'Update'}
           </button>
           <button className="mx-auto h-12 w-1/4 bg-gray-600 hover:bg-gray-700" onClick={closePanel}>
             Close
           </button>
-        </div>
+        </form>
       </div>
     )
   );
