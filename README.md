@@ -1,4 +1,4 @@
-# Contact Book App
+# 📇 Contact Book App
 
 This a [Vite.js](https://vitejs.dev/) project bootstrapped with [create-vite](https://vite.dev/guide/) with template
 `react-ts`.
@@ -17,12 +17,12 @@ The project is a simple contact book app that allows users to add, edit, and del
 
 ---
 
-## Prerequisites
+## 🔍 Prerequisites
 
 - Node.js
 - npm
 
-## Project setup
+## 📂 Project setup
 
 1. Clone the repository:
 
@@ -47,7 +47,7 @@ The project is a simple contact book app that allows users to add, edit, and del
    npm i -g json-server
    ```
 
-## Run server and app
+## 🚀 Run server and app
 
 1. Start JSON-Server (1st window):
    ```
@@ -62,7 +62,7 @@ Open [http://localhost:5173/](http://localhost:5173/) with your browser to see t
 
 ---
 
-## Available Scripts
+## 📜 Available Scripts
 
 - `npm run dev`: Runs the app in development mode with hot-reloading enabled.
 - `npm run build`: Compiles TypeScript files and builds the app for production to the `dist` folder.
