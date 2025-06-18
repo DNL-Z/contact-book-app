@@ -1,6 +1,7 @@
 import '@/styles/App.css';
 
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import ContactList from '@/components/ContactList/ContactList';
 import SidePanel from '@/components/SidePanel/SidePanel.tsx';
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <ContactList />
       </div>
       <SidePanel />
+      <Toaster position="bottom-center" toastOptions={{ duration: 4000 }} />
     </>
   );
 };
