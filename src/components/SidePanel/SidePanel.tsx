@@ -7,15 +7,14 @@ import useContactsStore from '@/stores/useContactsStore.ts';
 import { TContact } from '@/types/contact';
 
 const SidePanel: React.FC = () => {
+  const { contact, isOpen, isNew, closePanel } = UseSidePanel();
+  const { addContact, updateContact } = useContactsStore();
   const {
     register,
     setValue,
     handleSubmit,
     formState: { isSubmitting, isValid, errors },
   } = useForm<TContact>();
-
-  const { contact, isOpen, isNew, closePanel } = UseSidePanel();
-  const { addContact, updateContact } = useContactsStore();
 
   const onSubmit = handleSubmit((data) => {
     try {
@@ -26,11 +25,6 @@ const SidePanel: React.FC = () => {
         updateContact(contact?.id, data);
         toast.success('Contact updated successfully!');
       }
-
-      // Only for showing a success message
-      setTimeout(() => {
-        closePanel();
-      }, 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error('An error occurred');
@@ -91,14 +85,7 @@ const SidePanel: React.FC = () => {
             autoComplete="tel"
           />
           {errors.phone && <span className="text-red-900">{errors.phone.message}</span>}
-          {/*{isSubmitSuccessful && (*/}
-          {/*  <div*/}
-          {/*    className="rounded-lg border-green-700 bg-green-200 px-4 py-3 text-green-700"*/}
-          {/*    role="alert"*/}
-          {/*  >*/}
-          {/*    Contact {isNew ? 'created' : 'updated'} successfully!*/}
-          {/*  </div>*/}
-          {/*)}*/}
+
           <button
             type="submit"
             value="Submit"
