@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import UseSidePanel from '@/hooks/useSidePanel.tsx';
 import useContactsStore from '@/stores/useContactsStore.ts';
@@ -10,7 +11,7 @@ const SidePanel: React.FC = () => {
     register,
     setValue,
     handleSubmit,
-    formState: { isSubmitting, isValid, isSubmitSuccessful, errors },
+    formState: { isSubmitting, isValid, errors },
   } = useForm<TContact>();
 
   const { contact, isOpen, isNew, closePanel } = UseSidePanel();
@@ -20,8 +21,10 @@ const SidePanel: React.FC = () => {
     try {
       if (isNew && isValid) {
         addContact(data);
+        toast.success('Contact created successfully!');
       } else if (!isNew && isValid && contact?.id) {
         updateContact(contact?.id, data);
+        toast.success('Contact updated successfully!');
       }
 
       // Only for showing a success message
@@ -30,9 +33,10 @@ const SidePanel: React.FC = () => {
       }, 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
+      toast.error('An error occurred');
     }
   });
-  
+
   useEffect(() => {
     if (!isNew && contact) {
       setValue('firstName', contact.firstName);
@@ -87,14 +91,14 @@ const SidePanel: React.FC = () => {
             autoComplete="tel"
           />
           {errors.phone && <span className="text-red-900">{errors.phone.message}</span>}
-          {isSubmitSuccessful && (
-            <div
-              className="rounded-lg border-green-700 bg-green-200 px-4 py-3 text-green-700"
-              role="alert"
-            >
-              Contact {isNew ? 'created' : 'updated'} successfully!
-            </div>
-          )}
+          {/*{isSubmitSuccessful && (*/}
+          {/*  <div*/}
+          {/*    className="rounded-lg border-green-700 bg-green-200 px-4 py-3 text-green-700"*/}
+          {/*    role="alert"*/}
+          {/*  >*/}
+          {/*    Contact {isNew ? 'created' : 'updated'} successfully!*/}
+          {/*  </div>*/}
+          {/*)}*/}
           <button
             type="submit"
             value="Submit"
