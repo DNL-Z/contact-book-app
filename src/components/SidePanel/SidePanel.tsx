@@ -16,13 +16,13 @@ const SidePanel: React.FC = () => {
     formState: { isSubmitting, isValid, errors },
   } = useForm<TContact>();
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
       if (isNew && isValid) {
-        addContact(data);
+        await addContact(data);
         toast.success('Contact created successfully!');
       } else if (!isNew && isValid && contact?.id) {
-        updateContact(contact?.id, data);
+        await updateContact(contact?.id, data);
         toast.success('Contact updated successfully!');
       }
     } catch (error) {
