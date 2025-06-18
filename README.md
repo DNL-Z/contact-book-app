@@ -10,10 +10,12 @@ The project is a simple contact book app that allows users to add, edit, and del
 - [React](https://reactjs.org/) (v19.1.0): A JavaScript library for building user interfaces.
 - [TypeScript](https://www.typescriptlang.org/) (v5.8.3): A typed superset of JavaScript that compiles to plain
   JavaScript.
-- [Zustand](https://zustand-demo.pmnd.rs/) (v5.0.4): A small, fast, and scalable bearbones state-management solution.
+- [Zustand](https://zustand-demo.pmnd.rs/) (v5.0.5): A small, fast, and scalable bearbones state-management solution.
 - [JSON-Server](https://github.com/typicode/json-server) (v0.17.0): A full fake REST API that allows you to create a
   CRUD API with zero coding.
-- [Tailwind CSS](https://tailwindcss.com/) (v4.1.5): A utility-first CSS framework for rapidly building custom designs.
+- [Tailwind CSS](https://tailwindcss.com/) (v4.1.10): A utility-first CSS framework for rapidly building custom designs.
+- [React Hooks Form](https://react-hook-form.com/) (v7.58.0): A performant, flexible, and extensible forms library for
+  React.
 
 ---
 

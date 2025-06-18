@@ -16,7 +16,7 @@ const ContactItem: React.FC<Props> = ({ contact }) => {
     <>
       <div key={contact.id} className="grid max-h-36 grid-cols-3 rounded-2xl bg-purple-50 p-3">
         <div className="col-span-2 flex flex-col justify-center truncate overflow-auto">
-          <div className="mb-4 text-2xl font-bold text-gray-900">
+          <div className="mb-4 truncate text-2xl font-bold text-gray-900">
             {contact.firstName} {contact.lastName}
           </div>
           <div className="text-gray-700">
