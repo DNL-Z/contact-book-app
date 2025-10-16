@@ -22,7 +22,7 @@ The project is a simple contact book app that allows users to add, edit, and del
 ## 🔍 Prerequisites
 
 - Node.js
-- npm
+- npm or pnpm
 
 ## 📂 Project setup
 
