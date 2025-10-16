@@ -60,7 +60,8 @@ The project is a simple contact book app that allows users to add, edit, and del
    npm run dev
    ```
 
-Open [http://localhost:5173/](http://localhost:5173/) with your browser to see the result.
+Open [http://localhost:5173/](http://localhost:5173/) with your browser to see the Application. <br>
+Open [http://localhost:3004/](http://localhost:3004/) with your browser to see the JSON-Server.
 
 ---
 
