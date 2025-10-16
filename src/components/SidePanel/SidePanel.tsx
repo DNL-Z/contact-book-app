@@ -21,9 +21,11 @@ const SidePanel: React.FC = () => {
       if (isNew && isValid) {
         await addContact(data);
         toast.success('Contact created successfully!');
+        closePanel();
       } else if (!isNew && isValid && contact?.id) {
         await updateContact(contact?.id, data);
         toast.success('Contact updated successfully!');
+        closePanel();
       }
     } catch (error) {
       console.error('Error submitting form:', error);
